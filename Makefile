@@ -3,11 +3,8 @@ IMAGE_REPO ?= openyurt
 IMAGE_TAG ?= v0.1.0
 GIT_VERSION ?=$(IMAGE_TAG)
 
-DOCKER_BUILD_ARGS = --build-arg GIT_VERSION=${GIT_VERSION}
+DOCKER_BUILD_ARGS = --build-arg GIT_VERSION=${GIT_VERSION}  --build-arg GOPROXY=https://goproxy.cn
 
-ifeq (${REGION}, cn)
-DOCKER_BUILD_ARGS += --build-arg GOPROXY=https://goproxy.cn --build-arg MIRROR_REPO=mirrors.aliyun.com
-endif
 
 .PHONY: clean all build
 
@@ -29,4 +26,4 @@ clean:
 	-rm -Rf _output
 
 docker-build:
-	docker buildx build --no-cache --push ${DOCKER_BUILD_ARGS} --platform ${TARGET_PLATFORMS} -f hack/dockerfiles/Dockerfile . -t ${IMAGE_REPO}/edge-proxy:${GIT_VERSION}
+	docker build ${DOCKER_BUILD_ARGS} -f hack/dockerfiles/Dockerfile . -t ${IMAGE_REPO}/edge-proxy:${GIT_VERSION}

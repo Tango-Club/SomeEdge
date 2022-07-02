@@ -15,3 +15,6 @@
 1. 透明代理能力: 基于`EdgeProxyConfiguration.RemoteServers[0]`和`EdgeProxyConfiguration.RT`转发请求到指定服务器，同时服务器的response返回给请求方
 2. 数据过滤能力: 过滤response数据(如Kubernetes的Pod,ConfigMap)中Object.Name={skip-xxx}条件的数据
 3. 数据缓存能力: 基于`EdgeProxyConfiguration.SerializerManager`和`EdgeProxyConfiguration.DishCachePath`把服务器的response缓存到本地
+
+# 2022云原生编程挑战赛“边缘容器”赛题任务提交说明
+https://developer.aliyun.com/article/980320
